@@ -8,28 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-/// <reference path="homecomponent.ts" />
-/// <reference path="homecomponent.ts" />
 var core_1 = require('angular2/core');
-var router_1 = require('angular2/router');
-var homecomponent_1 = require('./homecomponent');
-var file_1 = require('./file');
-var AppComponent = (function () {
-    function AppComponent() {
+var AboutComponent = (function () {
+    function AboutComponent() {
     }
-    AppComponent = __decorate([
+    AboutComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'templates/Template.html',
-            directives: [router_1.ROUTER_DIRECTIVES]
-        }),
-        router_1.RouteConfig([
-            { path: '/home', name: 'Home', component: homecomponent_1.HomeComponent, useAsDefault: true },
-            { path: '/about', name: 'About', component: file_1.AboutComponent }
-        ]), 
+            selector: 'about',
+            templateUrl: 'templates/abouttemplate.html'
+        }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], AboutComponent);
+    return AboutComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.js.map
+exports.AboutComponent = AboutComponent;
+//# sourceMappingURL=file.js.map
