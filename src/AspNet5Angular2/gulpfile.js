@@ -19,7 +19,8 @@ gulp.task('default', function () {
       'node_modules/systemjs/dist/*.*',
       'node_modules/jquery/dist/jquery.*js',
       'node_modules/bootstrap/dist/js/bootstrap*.js',
-      'node_modules/rxjs/bundles/Rx.js'
+      'node_modules/rxjs/bundles/Rx.js',
+      'node_modules/underscore/underscore.js'
     ]).pipe(gulp.dest('./wwwroot/libs/'));
 
     gulp.src([
