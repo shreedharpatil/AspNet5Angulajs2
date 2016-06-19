@@ -14,9 +14,20 @@ import 'rxjs/Rx';
 
 export class ViewEmployeeComponent {
     _employeeService: EmployeeService;
+    private _http;
     constructor(http: Http, employeeService: EmployeeService) {
         this._employeeService = employeeService;
+        this._http = http;
         this._employeeService.getEmployee(undefined,null);
+    };
+
+    deleteEmp(id) {
+        this._http.delete("api/Employee/" + id).
+            map(res => console.log(res)).
+            subscribe(p => {
+                console.log(p);
+                this._employeeService.getEmployee(undefined, null);
+            });
     };
 }
 

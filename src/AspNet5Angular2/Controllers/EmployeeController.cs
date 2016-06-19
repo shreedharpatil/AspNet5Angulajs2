@@ -14,10 +14,18 @@ namespace AspNet5Angular2.Controllers
     {
         // GET: api/values
         [HttpGet]
-        public IEnumerable<object> Get()
+        public IEnumerable<Employee> Get()
         {
             HttpContext.Session.SetString("name","shreedahrs");
-            return new [] { new { Id = 1,  Name = "Shreedhar"}, new { Id = 2,  Name = "Pramod" } };
+            var emps = HttpContext.Session.GetObjectFromJson<IList<Employee>>("emps");
+            if (emps == null) {
+                emps = new List<Employee>();
+                emps.Add(new Employee{ Id = 1, Name = "Shreedhar" });
+                emps.Add(new Employee { Id = 2, Name = "Pramod" });
+            }
+            HttpContext.Session.SetObjectAsJson("emps", emps);
+            return emps;
+            //new [] { new { Id = 1,  Name = "Shreedhar"}, new { Id = 2,  Name = "Pramod" } };
         }
 
         // GET api/values/5
@@ -30,20 +38,38 @@ namespace AspNet5Angular2.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public JsonResult Post([FromBody]Employee emp)
         {
+            var emps = HttpContext.Session.GetObjectFromJson<IList<Employee>>("emps");
+            if (emps == null)
+            {
+                emps = new List<Employee>();
+            }
+            emps.Add(emp);
+            HttpContext.Session.SetObjectAsJson("emps", emps);
+            return this.Json(new { Message = "added" });
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public JsonResult Put([FromBody]Employee emp1)
         {
+            var emps = HttpContext.Session.GetObjectFromJson<List<Employee>>("emps");
+            var emp = emps.FirstOrDefault(p => p.Id == emp1.Id);
+            emp.Name = emp1.Name;
+            HttpContext.Session.SetObjectAsJson("emps", emps);
+            return this.Json(new { Message = "modified" });
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public JsonResult Delete(int id)
         {
+            var emps = HttpContext.Session.GetObjectFromJson<List<Employee>>("emps");
+            var emp = emps.FirstOrDefault(p => p.Id == id);
+            emps.Remove(emp);
+            HttpContext.Session.SetObjectAsJson("emps", emps);
+            return this.Json(new { Message = "deleted" });
         }
     }
 }

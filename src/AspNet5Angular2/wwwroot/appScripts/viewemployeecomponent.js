@@ -17,8 +17,19 @@ require('rxjs/Rx');
 var ViewEmployeeComponent = (function () {
     function ViewEmployeeComponent(http, employeeService) {
         this._employeeService = employeeService;
+        this._http = http;
         this._employeeService.getEmployee(undefined, null);
     }
+    ;
+    ViewEmployeeComponent.prototype.deleteEmp = function (id) {
+        var _this = this;
+        this._http.delete("api/Employee/" + id).
+            map(function (res) { return console.log(res); }).
+            subscribe(function (p) {
+            console.log(p);
+            _this._employeeService.getEmployee(undefined, null);
+        });
+    };
     ;
     ViewEmployeeComponent = __decorate([
         core_1.Component({

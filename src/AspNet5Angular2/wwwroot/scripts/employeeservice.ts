@@ -12,8 +12,8 @@ export class EmployeeService {
         this._http = http;
     }
 
-    setEmp() {
-        this.Employee = { Id : '484', Name : 'Shreedhar'};
+    getCurrentEmp() {
+        return this.Employee;
     }
 
     getEmp(id: string) {
@@ -37,6 +37,6 @@ export class EmployeeService {
                             this.Employee = this.Employees[i];
                         }
                     } }
-            });
+            }); 
     };
 }

@@ -1,12 +1,17 @@
-﻿<table border="1">
+﻿<a [routerLink]="['/AddEmployee']">Add new one</a>
+<table border="1">
     <thead>
         <tr>
             <th>Name</th>
             <th>Actions</th>
         </tr>
     </thead>
+    
     <tr *ngFor="#person of _employeeService.Employees">
         <td>{{person.Name}}</td>
-        <td><a [routerLink]="['/EditEmployee',{id : person.Id}]">Edit</a></td>
+        <td>
+        <a [routerLink]="['/EditEmployee',{id : person.Id}]">Edit</a>
+            <a (click)="deleteEmp(person.Id)">Delete</a>
+        </td>
     </tr>
 </table>    

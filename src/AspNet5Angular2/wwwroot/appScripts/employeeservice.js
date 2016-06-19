@@ -18,8 +18,8 @@ var EmployeeService = (function () {
         this.Employees = [];
         this._http = http;
     }
-    EmployeeService.prototype.setEmp = function () {
-        this.Employee = { Id: '484', Name: 'Shreedhar' };
+    EmployeeService.prototype.getCurrentEmp = function () {
+        return this.Employee;
     };
     EmployeeService.prototype.getEmp = function (id) {
         var emps = this.Employees;

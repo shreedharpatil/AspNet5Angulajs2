@@ -16,6 +16,7 @@ var homecomponent_1 = require('./homecomponent');
 var file_1 = require('./file');
 var viewemployeecomponent_1 = require('./viewemployeecomponent');
 var editemployeecomponent_1 = require('./editemployeecomponent');
+var addemployeecomponent_1 = require('./addemployeecomponent');
 var AppComponent = (function () {
     function AppComponent() {
     }
@@ -29,7 +30,8 @@ var AppComponent = (function () {
             { path: '/home', name: 'Home', component: homecomponent_1.HomeComponent, useAsDefault: true },
             { path: '/about', name: 'About', component: file_1.AboutComponent },
             { path: '/viewemployee', name: 'ViewEmployee', component: viewemployeecomponent_1.ViewEmployeeComponent },
-            { path: '/editemployee/:id', name: 'EditEmployee', component: editemployeecomponent_1.EditEmployeeComponent }
+            { path: '/editemployee/:id', name: 'EditEmployee', component: editemployeecomponent_1.EditEmployeeComponent },
+            { path: '/addemployee', name: 'AddEmployee', component: addemployeecomponent_1.AddEmployeeComponent }
         ]), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

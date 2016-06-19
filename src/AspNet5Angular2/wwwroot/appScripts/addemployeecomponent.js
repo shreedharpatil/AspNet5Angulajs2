@@ -14,23 +14,19 @@ var employeeservice_1 = require('./employeeservice');
 require('rxjs/Rx');
 var common_1 = require('angular2/common');
 var http_1 = require('angular2/http');
-var EditEmployeeComponent = (function () {
-    function EditEmployeeComponent(routeParams, http, router, employeeService) {
-        var id = routeParams.get('id');
-        this._employeeService = employeeService;
+var AddEmployeeComponent = (function () {
+    function AddEmployeeComponent(http, router) {
+        this.Employee = {};
         this._http = http;
         this._router = router;
-        this._employeeService.getEmployee(employeeService.getEmp, id);
-        // employeeService.getEmp(id);
-        //this._employeeService.setEmp();
     }
     ;
-    EditEmployeeComponent.prototype.editEmp = function () {
+    AddEmployeeComponent.prototype.saveEmp = function () {
         var _this = this;
-        var body = JSON.stringify(this._employeeService.getCurrentEmp());
+        var body = JSON.stringify(this.Employee);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        this._http.put("api/Employee", body, options).
+        this._http.post("api/Employee", body, options).
             map(function (res) { return console.log(res); }).
             subscribe(function (p) {
             console.log(p);
@@ -38,16 +34,16 @@ var EditEmployeeComponent = (function () {
         });
     };
     ;
-    EditEmployeeComponent = __decorate([
+    AddEmployeeComponent = __decorate([
         core_1.Component({
-            selector: 'editemployee',
-            templateUrl: 'templates/editemployeetemplate.html',
+            selector: 'addemployee',
+            templateUrl: 'templates/addemployeetemplate.html',
             directives: [common_1.NgModel],
             viewProviders: [employeeservice_1.EmployeeService, http_1.HTTP_PROVIDERS]
         }), 
-        __metadata('design:paramtypes', [router_1.RouteParams, http_1.Http, router_1.Router, employeeservice_1.EmployeeService])
-    ], EditEmployeeComponent);
-    return EditEmployeeComponent;
+        __metadata('design:paramtypes', [http_1.Http, router_1.Router])
+    ], AddEmployeeComponent);
+    return AddEmployeeComponent;
 }());
-exports.EditEmployeeComponent = EditEmployeeComponent;
-//# sourceMappingURL=editemployeecomponent.js.map
+exports.AddEmployeeComponent = AddEmployeeComponent;
+//# sourceMappingURL=addemployeecomponent.js.map
