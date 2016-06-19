@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -15,6 +16,7 @@ namespace AspNet5Angular2.Controllers
         [HttpGet]
         public IEnumerable<object> Get()
         {
+            HttpContext.Session.SetString("name","shreedahrs");
             return new [] { new { Id = 1,  Name = "Shreedhar"}, new { Id = 2,  Name = "Pramod" } };
         }
 
@@ -22,7 +24,8 @@ namespace AspNet5Angular2.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
+
+            return HttpContext.Session.GetString("name");
         }
 
         // POST api/values

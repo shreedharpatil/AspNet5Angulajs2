@@ -4,17 +4,24 @@ import {Http} from 'angular2/http';
 @Injectable()
 export class EmployeeService {
     private _http;
-    Employees = [];
-    Employee = {};
-    private self = this;
+    private Employees = [];
+    private  Employee = {};
     constructor(http: Http) {
+        this.Employee = {};
+        this.Employees = [];
         this._http = http;
     }
 
+    setEmp() {
+        this.Employee = { Id : '484', Name : 'Shreedhar'};
+    }
+
     getEmp(id: string) {
-        for (var i = 0; i < this.Employees.length; i++) {
-            if (this.Employees[i].Id == id) {
-                this.Employee = this.Employees[i];
+        var emps = this.Employees;
+        var emp = this.Employee;
+        for (var i = 0; i < emps.length; i++) {
+            if (emps[i].Id == id) {
+                emp = emps[i];
             }
         }
     }
@@ -22,7 +29,14 @@ export class EmployeeService {
     getEmployee(callback,id) {
         this._http.get('api/Employee')
             .map(res => res.json()).subscribe(people => {
-                console.log(people); this.Employees = people; if (callback) { callback(id); }
+                console.log(people); this.Employees = people; if (callback) {
+                    var emps = this.Employees;
+                    var emp = this.Employee;
+                    for (var i = 0; i < this.Employees.length; i++) {
+                        if (this.Employees[i].Id == id) {
+                            this.Employee = this.Employees[i];
+                        }
+                    } }
             });
     };
 }

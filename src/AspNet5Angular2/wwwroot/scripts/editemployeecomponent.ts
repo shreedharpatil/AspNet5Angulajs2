@@ -16,8 +16,9 @@ export class EditEmployeeComponent {
     _employeeService: EmployeeService;
     constructor(routeParams: RouteParams, employeeService: EmployeeService) {        
         var id = routeParams.get('id');
-        employeeService.getEmployee(employeeService.getEmp,id);
-        // employeeService.getEmp(id);
         this._employeeService = employeeService;
+        this._employeeService.getEmployee(employeeService.getEmp,id);
+        // employeeService.getEmp(id);
+        //this._employeeService.setEmp();
     };
 }

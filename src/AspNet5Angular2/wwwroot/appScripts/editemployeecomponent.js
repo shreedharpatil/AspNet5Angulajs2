@@ -17,9 +17,10 @@ var http_1 = require('angular2/http');
 var EditEmployeeComponent = (function () {
     function EditEmployeeComponent(routeParams, employeeService) {
         var id = routeParams.get('id');
-        employeeService.getEmployee(employeeService.getEmp, id);
-        // employeeService.getEmp(id);
         this._employeeService = employeeService;
+        this._employeeService.getEmployee(employeeService.getEmp, id);
+        // employeeService.getEmp(id);
+        //this._employeeService.setEmp();
     }
     ;
     EditEmployeeComponent = __decorate([

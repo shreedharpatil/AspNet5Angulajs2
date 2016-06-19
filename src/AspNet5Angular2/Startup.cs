@@ -16,6 +16,8 @@ namespace AspNet5Angular2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddCaching();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,6 +26,7 @@ namespace AspNet5Angular2
             app.UseIISPlatformHandler();
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseMvc(config => {
                 config.MapRoute(
 

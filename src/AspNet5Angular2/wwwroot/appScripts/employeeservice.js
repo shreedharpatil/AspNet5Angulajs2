@@ -14,13 +14,19 @@ var EmployeeService = (function () {
     function EmployeeService(http) {
         this.Employees = [];
         this.Employee = {};
-        this.self = this;
+        this.Employee = {};
+        this.Employees = [];
         this._http = http;
     }
+    EmployeeService.prototype.setEmp = function () {
+        this.Employee = { Id: '484', Name: 'Shreedhar' };
+    };
     EmployeeService.prototype.getEmp = function (id) {
-        for (var i = 0; i < this.Employees.length; i++) {
-            if (this.Employees[i].Id == id) {
-                this.Employee = this.Employees[i];
+        var emps = this.Employees;
+        var emp = this.Employee;
+        for (var i = 0; i < emps.length; i++) {
+            if (emps[i].Id == id) {
+                emp = emps[i];
             }
         }
     };
@@ -31,7 +37,13 @@ var EmployeeService = (function () {
             console.log(people);
             _this.Employees = people;
             if (callback) {
-                callback(id);
+                var emps = _this.Employees;
+                var emp = _this.Employee;
+                for (var i = 0; i < _this.Employees.length; i++) {
+                    if (_this.Employees[i].Id == id) {
+                        _this.Employee = _this.Employees[i];
+                    }
+                }
             }
         });
     };
